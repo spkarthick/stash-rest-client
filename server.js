@@ -33,8 +33,16 @@ app.get('/getAllPullRequest', function(req, res){
 });
 
 
-app.get('/singlePullReq', function(req, res){
-	stashApi.prs.get('reponame', 'reposlug', 'pullReqId').then(function(response){
+app.get('/getComments', function(req, res){
+	stashApi.prs.getComments('reponame', 'reposlug', 1).then(function(response){
+		res.send(response);
+	}, function(err){
+		res.send(err);
+	});
+});
+
+app.get('/getActivities', function(req, res){
+	stashApi.prs.getActivities('reponame', 'reposlug', 1).then(function(response){
 		res.send(response);
 	}, function(err){
 		res.send(err);
