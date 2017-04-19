@@ -4,21 +4,22 @@ var app = express();
 
 var Client = require('./lib/client');
 
-var stashApi = new Client('******', '******', '******');
+var stashApi = new Client('https://git.rabobank.nl/rest/api/1.0/', 'sattanv', 'Fqo0BXCJ');
 
 //get all projects for all repo
 app.get('/getProjects', function(req, res){
 	stashApi.projects.get().then(function(response){
-		res.send(response);
+		res.send(response.values);
 	}, function(err){
 		res.send(err);
 	});
 });
 
 //get all repo
-app.get('/getRepo', function(req, res){
-	stashApi.repos.get('RFS').then(function(response){
-		res.send(response);
+app.get('/getRepo/:projectId', function(req, res){
+	console.log(req.params.projectId);
+	stashApi.repos.get(req.params.projectId).then(function(response){
+		res.send(response.values);
 	}, function(err){
 		res.send(err);
 	});

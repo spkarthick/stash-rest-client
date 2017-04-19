@@ -26,11 +26,20 @@
                 <form name="searchForm">
                     <div class="form-group">
                         <label for="project">Project:</label>
-                        <input type="text" name="project" ng-model="vm.project">
+                        <!-- <input type="text" name="project" ng-model="vm.project"> -->
+                         <select ng-options="project.name for project in vm.projects" ng-model="vm.project" ng-change="vm.projectChanged()">
+                            <!--<option ng-repeat="project in vm.projects track by project.key" value="project.key" ng-click="vm.onRepoSelect(project.key)">{{project.name}}</option>-->
+                            <option value="">-----Select Project-----</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="repo">Repo:</label>
-                        <input type="text" name="repo" ng-model="vm.repo">
+                        <!--<input type="text" name="repo" ng-model="vm.repo"> -->
+
+                        <select ng-options="repo.name for repo in vm.repos" ng-model="vm.repo" ng-change="vm.repoChanged()">
+                            <!--<option ng-repeat="project in vm.projects track by project.key" value="project.key" ng-click="vm.onRepoSelect(project.key)">{{project.name}}</option>-->
+                            <option value="">-----Select Repo-----</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="startDate">Start Date:</label>
