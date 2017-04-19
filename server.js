@@ -4,7 +4,7 @@ var app = express();
 
 var Client = require('./lib/client');
 
-var stashApi = new Client('https://git.rabobank.nl/rest/api/1.0/', 'sattanv', 'Fqo0BXCJ');
+var stashApi = new Client('', '', '');
 
 //get all projects for all repo
 app.get('/getProjects', function(req, res){
