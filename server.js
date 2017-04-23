@@ -88,6 +88,12 @@ app.get('/getFormattedData/:project/:repo/:start/:end', function(req, res){
 					})
 					stashApi.prs.getCommits(req.params.project, req.params.repo, pull.id).then(function(response){
 						obj.commits = response.values;
+						obj.contributors = response.values.map(function(e) {
+							return e.author.name;
+						});
+						obj.contributors = utils.uniq(obj.contributors);
+						var index = obj.contributors.indexOf(obj.author);
+						obj.contributors.splice(index, 1);
 						formattedData.push(obj);
 						resolve();
 					}, function(err){
